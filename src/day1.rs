@@ -1,19 +1,16 @@
 use std::env;
-use std::io::BufRead;
 
 use crate::Result;
 
 pub fn run() -> Result<()> {
     println!("* Day 1 *");
 
-    let input = std::fs::File::open(concat!(env!("CARGO_MANIFEST_DIR"), "/input/day1/input"))?;
-    let reader = std::io::BufReader::new(input);
+    let input = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/input/day1/input"));
 
     let mut elves = Vec::new();
     let mut calories = Vec::new();
 
-    for line in reader.lines() {
-        let line = line.unwrap();
+    for line in input.lines() {
         if line.is_empty() {
             elves.push(calories.clone());
             calories.clear();

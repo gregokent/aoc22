@@ -1,5 +1,4 @@
 use std::env;
-use std::io::BufRead;
 
 use crate::Result;
 
@@ -54,20 +53,16 @@ impl From<Round> for u32 {
 
 pub fn run() -> Result<()> {
     println!("* Day 2 *");
+    let input = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/input/day2/input"));
 
-    puzzle1()?;
-    puzzle2()?;
+    puzzle1(input)?;
+    puzzle2(input)?;
     Ok(())
 }
 
-fn puzzle1() -> Result<()> {
-    let input = std::fs::File::open(concat!(env!("CARGO_MANIFEST_DIR"), "/input/day2/input"))?;
-
-    let reader = std::io::BufReader::new(input);
+fn puzzle1(input: &str) -> Result<()> {
     let mut score = 0;
-    for (idx, line) in reader.lines().enumerate() {
-        let line = line.unwrap();
-
+    for (idx, line) in input.lines().enumerate() {
         let round = match (&line[0..1], &line[2..3]) {
             ("A", "X") => Round::Draw(Kind::Rock),
             ("A", "Y") => Round::Win(Kind::Paper),
@@ -89,17 +84,13 @@ fn puzzle1() -> Result<()> {
     Ok(())
 }
 
-fn puzzle2() -> Result<()> {
+fn puzzle2(input: &str) -> Result<()> {
     const ROCK: &'static str = "A";
     const PAPER: &'static str = "B";
     const SCISSORS: &'static str = "C";
-    let input = std::fs::File::open(concat!(env!("CARGO_MANIFEST_DIR"), "/input/day2/input"))?;
 
-    let reader = std::io::BufReader::new(input);
     let mut score = 0;
-    for (idx, line) in reader.lines().enumerate() {
-        let line = line.unwrap();
-
+    for (idx, line) in input.lines().enumerate() {
         let round = match (&line[0..1], &line[2..3]) {
             (ROCK, "X") => Round::Lose(Kind::Scissors),
             (ROCK, "Y") => Round::Draw(Kind::Rock),

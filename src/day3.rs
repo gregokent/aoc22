@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 use std::env;
-use std::io::{BufRead, Read};
 use std::iter::FromIterator;
 
 use crate::Result;
@@ -8,13 +7,10 @@ use crate::Result;
 pub fn run() -> Result<()> {
     println!("* Day 3 *");
 
-    let mut input = std::fs::File::open(concat!(env!("CARGO_MANIFEST_DIR"), "/input/day3/input"))?;
+    let bags = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/input/day3/input"));
 
-    let mut bags = String::new();
-    input.read_to_string(&mut bags)?;
-
-    puzzle1(&bags);
-    puzzle2(&bags);
+    puzzle1(bags);
+    puzzle2(bags);
     Ok(())
 }
 
