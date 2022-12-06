@@ -80,7 +80,7 @@ fn puzzle2(bags: &str) -> Result<()> {
     });
 
     let end = start.elapsed();
-    println!("{total} - {}", end.as_micros());
+    println!("{total} - {}us", end.as_micros());
 
     Ok(())
 }
