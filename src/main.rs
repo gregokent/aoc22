@@ -4,6 +4,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 
 type Error = Box<dyn std::error::Error + Send + Sync + 'static>;
 type Result<T> = std::result::Result<T, crate::Error>;
@@ -15,6 +16,7 @@ fn main() -> Result<()> {
     day4::run()?;
     day5::run()?;
     day6::run()?;
+    day7::run()?;
 
     Ok(())
 }
